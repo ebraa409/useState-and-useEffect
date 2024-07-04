@@ -10,6 +10,8 @@ const [number, setNumber] = useState(0)
   const onPress = () => {
     setNumber(number +1)
   }
+
+  
   return (
     <View
       style={{
