@@ -7,11 +7,14 @@ const App = () => {
 const [number, setNumber] = useState(0)
 
 // function to increment the number onPress
-  const onPress = () => {
-    setNumber(number +1)
+  const onPressIncrement = () => {
+    setNumber(number + 1)
   }
 
-  
+  const onPressDecrement = () => {
+    setNumber (number - 1)
+  }
+
   return (
     <View
       style={{
@@ -23,8 +26,13 @@ const [number, setNumber] = useState(0)
       <Text>{number}~{"\n"}</Text>
       <Button
     title="+"
-    onPress={onPress}
+    onPress={onPressIncrement}
     />
+    <Button
+    title="-"
+    onPress={onPressDecrement}
+    />
+    
     </View>
 
   );
