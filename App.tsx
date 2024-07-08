@@ -8,33 +8,49 @@ const App = () => {
 const [number, setNumber] = useState(0)
 const [count, setCount] = useState(0)
 const [timer, setTimer] = useState(false)
+const [fact , setFact] = useState('')
 
 useEffect(() => {
+    //Fetching Api Data
+    fetch('https://catfact.ninja/fact')
+    .then(response => response.json())
+    .then(json => {
+      setFact(json.fact)
+    })
+      .catch(error => console.log(error));
+  
+}, [''])
+useEffect(() => {
+
+
+// Using setInterval or start a timer and increases the counter
 if(timer === true){
     const interval = setInterval(() => {
     setCount(counter => counter + 1)
-  }, 1000);
+  }, 100);
 
+  // pauses the timer cancels/stops the parameter
   return () =>  clearInterval(interval);
 }
 }, [timer])
 
 
-
+// function to handle startTimer button
 const startTimer = () => {
 setTimer(true)
 }
 
+// function to handle stopTimer button
 const stopTimer = () => {
   setTimer(false)
-  console.log(timer)
-  clearInterval(count)
 }
 
 // function to increment the number onPress
   const onPressIncrement = () => {
     setNumber(number + 1)
   }
+
+// function to decrement the number onPress
 
   const onPressDecrement = () => {
     setNumber (number - 1)
@@ -50,10 +66,13 @@ const stopTimer = () => {
         backgroundColor: "black"
       }}>
       <Text style= {{
-        fontSize: 40,
+        fontSize: 20,
       }}>
-        API Fetch:
+        Random Cat Fact:
       </Text>
+      <Text>{"\n"}</Text>
+
+      <Text>{fact}</Text>
       <Text>{number}{"\n"}</Text>
       
       <Button 
